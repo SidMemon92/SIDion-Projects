@@ -12,10 +12,9 @@ dht DHT;
 
 
 
-void setup() {
-  
-
- 
+void setup() 
+{
+  Serial.begin(9600);
   pinMode(lpg_sensor, INPUT);
   pinMode(ledPin, OUTPUT);
   pinMode(reLay,OUTPUT);
@@ -23,81 +22,54 @@ void setup() {
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("LPG Gas Detector");
-   lcd.setCursor(1,1);
-  lcd.print("E&TC  TE- C4");
+  lcd.setCursor(1,1);
+  lcd.print("& Auto ON/OFF");
   delay(5000);
   lcd.clear();
-
 }
 
-void loop() {
-  
+void loop() 
+{
   DHT.read11(dht_apin);
-  
-    
-    delay(50);//Wait 5 seconds before accessing sensor again.
+   
+  delay(50);//Wait 5 seconds before accessing sensor again.
 
-    if(digitalRead(lpg_sensor))
+  if(digitalRead(lpg_sensor))
   {
-//    for(DHT.temperature=0;DHT.temperature;DHT.temperature++)
-//    {
-      
     digitalWrite(ledPin, HIGH);
-    digitalWrite(reLay, LOW);
+    digitalWrite(reLay, HIGH);
     lcd.clear();
     lcd.setCursor(0,0);
     lcd.print("LPG Gas Leakage");
     lcd.setCursor(4, 1);
     lcd.print("     Alert     ");
-//    digitalWrite(ledPin, HIGH);
-//    digitalWrite(reLay, LOW);
-    delay(500);
-//    }
-//     for(DHT.temperature=25;DHT.temperature;DHT.temperature++)
-//     {
-//      lcd.clear();
-//    lcd.setCursor(5,0);
-//    lcd.print("   Fire ");
-//    lcd.setCursor(4, 1);
-//    lcd.print("  Warning  ");
-//    digitalWrite(ledPin, LOW);
-//    delay(50);
-//    digitalWrite(ledPin, HIGH);
-//    delay(50);
-//    digitalWrite(ledPin, LOW);
-//    delay(50);
-//    digitalWrite(ledPin, HIGH);
-//    delay(50);
-//      
-//     }
-    
-  }
-    
+    delay(500);    
+  }  
   else 
   {
     digitalWrite(ledPin, LOW);
-    digitalWrite(reLay, HIGH);
+    digitalWrite(reLay, LOW);
     lcd.clear();
     lcd.setCursor(2,0);
     lcd.print("No Leakage ");
     delay(3000);
     
     lcd.clear();
+    
     lcd.setCursor(1,0);
     lcd.print("Temp = ");
-  lcd.print(DHT.temperature);  //printing temperarture to the LCD display
-
-
-  lcd.print("'C");
+    lcd.print(DHT.temperature);  //printing temperarture to the LCD display
+    Serial.print("Temperature = ");
+    Serial.println(DHT.temperature);
+    lcd.print("'C");
+    
     lcd.setCursor(0,1);
     lcd.print("Humi. = ");
     lcd.print(DHT.humidity);  //printing humidity to the LCD display
-  lcd.print(" %");
+    Serial.print("Humidity = ");
+    Serial.println(DHT.humidity);
+    lcd.print(" %");
+   
     delay(3000);
   }
-  
-  
-  
- 
-
 }
