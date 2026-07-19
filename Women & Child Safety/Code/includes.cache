@@ -1,0 +1,47 @@
+[
+  {
+    "Sourcefile": "",
+    "Include": "",
+    "Includepath": "C:\\Program Files\\Arduino\\hardware\\arduino\\avr\\cores\\arduino"
+  },
+  {
+    "Sourcefile": "",
+    "Include": "",
+    "Includepath": "C:\\Program Files\\Arduino\\hardware\\arduino\\avr\\variants\\standard"
+  },
+  {
+    "Sourcefile": "C:\\Users\\SID\\AppData\\Local\\Temp\\arduino_build_487524\\sketch\\Sample.ino.cpp",
+    "Include": "LiquidCrystal.h",
+    "Includepath": "C:\\Program Files\\Arduino\\libraries\\LiquidCrystal\\src"
+  },
+  {
+    "Sourcefile": "C:\\Users\\SID\\AppData\\Local\\Temp\\arduino_build_487524\\sketch\\Sample.ino.cpp",
+    "Include": "SoftwareSerial.h",
+    "Includepath": "C:\\Program Files\\Arduino\\hardware\\arduino\\avr\\libraries\\SoftwareSerial\\src"
+  },
+  {
+    "Sourcefile": "C:\\Users\\SID\\AppData\\Local\\Temp\\arduino_build_487524\\sketch\\Sample.ino.cpp",
+    "Include": "TinyGPS.h",
+    "Includepath": "C:\\Program Files\\Arduino\\libraries\\TinyGPS-13.0.0\\src"
+  },
+  {
+    "Sourcefile": "C:\\Users\\SID\\AppData\\Local\\Temp\\arduino_build_487524\\sketch\\Sample.ino.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Program Files\\Arduino\\libraries\\LiquidCrystal\\src\\LiquidCrystal.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Program Files\\Arduino\\hardware\\arduino\\avr\\libraries\\SoftwareSerial\\src\\SoftwareSerial.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "C:\\Program Files\\Arduino\\libraries\\TinyGPS-13.0.0\\src\\TinyGPS.cpp",
+    "Include": "",
+    "Includepath": ""
+  }
+]

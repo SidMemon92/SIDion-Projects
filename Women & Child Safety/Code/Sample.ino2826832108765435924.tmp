@@ -1,0 +1,90 @@
+#include<LiquidCrystal.h>
+#include<SoftwareSerial.h>
+
+
+SoftwareSerial GM(1,0);
+LiquidCrystal lcd(13,12,11,10,9,8);
+
+int temp = A0;
+int pul = A1;
+float temp_adc_val;
+float temp_val;
+int sms_count = 0;
+int BPM;
+
+void setup()
+{
+  pinMode(temp, INPUT);
+  pinMode(pul, INPUT);
+  Serial.begin(9600);
+  GM.begin(9600);
+  lcd.begin(16,2);
+  delay(500);
+
+ 
+}
+
+void loop()
+{
+  tem();
+  pulse();
+  
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Temp : ");
+  lcd.print(temp_val);
+  lcd.print(" *F");
+  lcd.setCursor(0,1);
+  lcd.print("Beats : ");
+  lcd.print(BPM);
+  lcd.print(" BPM");
+
+  if((temp_val<88 || temp_val>100)&&(BPM > 130 || BPM < 60))
+  {
+    while(sms_count<3)
+   {
+      SendTextMessage();
+   }
+  }
+ delay(2000); 
+
+ if((temp_val<100 || temp_val>88)||(BPM < 130 || BPM > 60))
+ {
+  sms_count = 0;
+ }
+ 
+}
+
+void tem()
+{
+  temp_adc_val = (analogRead(temp))/2.048;
+  temp_val = (((temp_adc_val)*9.0)/5.0)+32.0;
+}
+
+void pulse()
+{
+  BPM = (analogRead(pul)*4*88)/25;
+}
+
+void SendTextMessage()
+{
+  tem();
+  pulse();
+  
+  GM.println("AT+CMGF=1");    //To send SMS in Text Mode
+  delay(200);
+  GM.println("AT+CMGS=\"+917057727898\"\r"); // change to the phone number you using 
+  delay(200);
+  GM.println("Temperature : " + String(temp_val) + " *F" + '/n' + "Beats : " + String(BPM) +  " BPM");//the content of the message
+  delay(200);
+  GM.println((char)26);//the stopping character
+  delay(500);
+//   GM.println("AT+CMGS=\"+919847xxxxxx\"\r"); // change to the phone number you using 
+//  delay(200);
+//  GM.println("Fire in NEW ROOM!");//the content of the message
+//  delay(200);
+//  GM.println((char)26);//the message stopping character
+//  delay(500);
+  sms_count++;
+  
+}
